@@ -195,12 +195,30 @@
 <span id='153'>153</span>
 <span id='154'>154</span>
 <span id='155'>155</span>
+<span id='156'>156</span>
+<span id='157'>157</span>
+<span id='158'>158</span>
+<span id='159'>159</span>
+<span id='160'>160</span>
+<span id='161'>161</span>
+<span id='162'>162</span>
+<span id='163'>163</span>
+<span id='164'>164</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>phase</span>, <span class='ident'>slicing_syntax</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>experimental</span>]</span>
 
-<span class='doccomment'>/**
+<span class='doccomment'>/*!
+ * Usage example:
  *
+ * ```
+ * use std::collections::HashMap;
+ * use markov::MarkovGenerator;
+ *
+ * let mut markov = MarkovGenerator::new(HashMap::new());
+ * markov.feed_from_words(&amp;[&quot;Hello&quot;, &quot;world&quot;, &quot;my&quot;, &quot;name&quot;, &quot;is&quot;, &quot;KokaKiwi&quot;]);
+ * let text = markov.generate_text(15);
+ * ```
  */</span>
 
 <span class='attribute'>#[<span class='ident'>phase</span>(<span class='ident'>plugin</span>, <span class='ident'>link</span>)]</span>
@@ -313,7 +331,7 @@
             <span class='ident'>w2</span> <span class='op'>=</span> {
                 <span class='kw'>let</span> <span class='ident'>words</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>cache</span>.<span class='ident'>get</span>((<span class='ident'>old_w1</span>.<span class='ident'>as_slice</span>(), <span class='ident'>w2</span>.<span class='ident'>as_slice</span>())) {
                     <span class='prelude-val'>Some</span>(<span class='ident'>words</span>) <span class='op'>=&gt;</span> <span class='ident'>words</span>,
-                    <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='macro'>panic</span><span class='macro'>!</span>(<span class='string'>&quot;Can&#39;t find words: {}&quot;</span>, (<span class='ident'>old_w1</span>.<span class='ident'>as_slice</span>(), <span class='ident'>w2</span>.<span class='ident'>as_slice</span>())),
+                    <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='kw'>break</span>, <span class='comment'>// Break loop, we got no more words to put in the text.</span>
                 };
                 <span class='ident'>rng</span>.<span class='ident'>choose</span>(<span class='ident'>words</span>).<span class='ident'>unwrap</span>()
             };
