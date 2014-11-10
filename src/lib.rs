@@ -1,4 +1,5 @@
 #![feature(phase, slicing_syntax)]
+#![experimental]
 
 #[phase(plugin, link)]
 extern crate log;
