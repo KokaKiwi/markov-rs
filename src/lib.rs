@@ -1,6 +1,19 @@
 #![feature(phase, slicing_syntax)]
 #![experimental]
 
+/*!
+ * Usage example:
+ *
+ * ```
+ * use std::collections::HashMap;
+ * use markov::MarkovGenerator;
+ *
+ * let mut markov = MarkovGenerator::new(HashMap::new());
+ * markov.feed_from_words(&["Hello", "world", "my", "name", "is", "KokaKiwi"]);
+ * let text = markov.generate_text(15);
+ * ```
+ */
+
 #[phase(plugin, link)]
 extern crate log;
 
