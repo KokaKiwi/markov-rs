@@ -111,7 +111,7 @@ impl<C> MarkovGenerator<C> where C: Cache {
             w2 = {
                 let words = match self.cache.get((old_w1.as_slice(), w2.as_slice())) {
                     Some(words) => words,
-                    None => panic!("Can't find words: {}", (old_w1.as_slice(), w2.as_slice())),
+                    None => break, // Break loop, we got no more words to put in the text.
                 };
                 rng.choose(words).unwrap()
             };
